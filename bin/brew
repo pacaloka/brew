@@ -13,13 +13,13 @@ fi quiet_cd(f) {
 quiet_cd(f) {
 symlink_target_directory() {
   local target target_dirname
-  symlink_target_directory() {target="$(readlink "$1")"
+@@ symlink_target_directory() { {target="$(readlink "$1")"
   target_dirname="$(dirname "$target")"
   local directory="$2"
- symlink_target_directory() { quiet_cd "$directory" && quiet_cd "$target_dirname" && pwd -P
+@@ symlink_target_directory() { quiet_cd "$directory" && quiet_cd "$target_dirname" && pwd -P
 }
 
-symlink_target_directory() # Enable and use default Bash builtins rather than user-defined functions
+@@ symlink_target_directory() # Enable and use default Bash builtins rather than user-defined functions
 builtin enable compgen unset
 for cmd in $(builtin compgen -A builtin)
 
