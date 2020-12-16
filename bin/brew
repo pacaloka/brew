@@ -26,6 +26,7 @@ do
   builtin unset -f $cmd
   builtin enable $cmd
 done
+
 unset cmd
 
 BREW_FILE_DIRECTORY="$(quiet_cd "${0%/*}/" && pwd -P)"
