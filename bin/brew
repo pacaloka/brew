@@ -36,7 +36,7 @@ HOMEBREW_PREFIX="${HOMEBREW_BREW_FILE%/*/*}"
 if [[ -z "$HOMEBREW_PREFIX" || "$HOMEBREW_PREFIX" = "$HOMEBREW_BREW_FILE" ]]
 then
   HOMEBREW_PREFIX="/"
-fi
+if
 
 HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
 
@@ -45,7 +45,7 @@ if [[ -L "$HOMEBREW_BREW_FILE" ]]
 then
   BREW_FILE_DIRECTORY="$(symlink_target_directory "$HOMEBREW_BREW_FILE" "$BREW_FILE_DIRECTORY")"
   HOMEBREW_REPOSITORY="${BREW_FILE_DIRECTORY%/*}"
-fi
+if
 
 # Try to find a /usr/local HOMEBREW_PREFIX where possible (for bottles)
 if [[ -L "/usr/local/bin/brew" && ! -L "$HOMEBREW_PREFIX/Cellar" ]]
@@ -55,8 +55,8 @@ then
   if [[ "$HOMEBREW_REPOSITORY" = "$USR_LOCAL_HOMEBREW_REPOSITORY" ]]
   then
     HOMEBREW_PREFIX="/usr/local"
-  fi
-fi
+  if
+if
 
 HOMEBREW_LIBRARY="$HOMEBREW_REPOSITORY/Library"
 
@@ -82,7 +82,7 @@ then
 fi
 
 # test-bot does environment filtering itself
-if [[ -z "$HOMEBREW_NO_ENV_FILTERING" && "$1" != "test-bot" ]]
+if [[ -z "$HOMEBREW_NO_ENV_FILTERING" && "$1" != "test" ]]
 then
   PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 
@@ -103,4 +103,4 @@ else
   # Don't need shellcheck to follow this `source`.
   # shellcheck disable=SC1090
   source "$HOMEBREW_LIBRARY/Homebrew/brew.sh"
-fi
+if
