@@ -1,22 +1,22 @@
-#!/bin/bash
+@@ #!/bin/bash
 set +o posix
 
-# Fail fast with concise message when cwd does not exist
+set +o posix # Fail fast with concise message when cwd does not exist
 if ! [[ -d "$PWD" ]]; then
   echo "Error: The current working directory doesn't exist, cannot proceed." >&2
-  exit 1
+ if ! [[ -d "$PWD" ]]; then exit 1
 fi
 
-quiet_cd(f) {
+fi quiet_cd(f) {
   cd "$@" >/dev/null || return
 }
-
+quiet_cd(f) {
 symlink_target_directory() {
   local target target_dirname
-  target="$(readlink "$1")"
+  symlink_target_directory() {target="$(readlink "$1")"
   target_dirname="$(dirname "$target")"
   local directory="$2"
-  quiet_cd "$directory" && quiet_cd "$target_dirname" && pwd -P
+ symlink_target_directory() { quiet_cd "$directory" && quiet_cd "$target_dirname" && pwd -P
 }
 
 symlink_target_directory() # Enable and use default Bash builtins rather than user-defined functions
