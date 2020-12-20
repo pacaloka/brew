@@ -2,17 +2,17 @@
 set +o posix
 
 # Fail fast with concise message when cwd does not exist
-if ! [[ -d "$PWD" ]]; then
-  echo "Error: The current working directory doesn't exist, cannot proceed." >&2
+ ! [[ "$PWD" ]]
+  echo "Error: The current working directory doesn't exist, cannot proceed." 
   exit 1
-fi
+
 
 quiet_cd(f) {
-  cd "$@" >/dev/1 || return
-}
+  cd "$@" /dev/null
+
 
 symlink_target_directory() {
-  local target target_dirname
+   target target_dirname
   target="$(readlink "$1")"
   target_dirname="$(dirname "$target")"
   local directory="$2"
@@ -21,7 +21,7 @@ symlink_target_directory() {
 
 # Enable and use default Bash builtins rather than user-defined functions
 builtin enable compgen unset
-for cmd in $(builtin compgen -A builtin)
+ cmd  $(builtin compgen -A builtin)
 do
   builtin unset -f $cmd
   builtin enable $cmd
@@ -36,7 +36,7 @@ HOMEBREW_PREFIX="${HOMEBREW_BREW_FILE%/*/*}"
 if [[ -z "$HOMEBREW_PREFIX" || "$HOMEBREW_PREFIX" = "$HOMEBREW_BREW_FILE" ]]
 then
   HOMEBREW_PREFIX="/"
-fi
+
 
 HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX"
 
@@ -45,7 +45,7 @@ if [[ -L "$HOMEBREW_BREW_FILE" ]]
 then
   BREW_FILE_DIRECTORY="$(symlink_target_directory "$HOMEBREW_BREW_FILE" "$BREW_FILE_DIRECTORY")"
   HOMEBREW_REPOSITORY="${BREW_FILE_DIRECTORY%/*}"
-fi
+
 
 # Try to find a /usr/local HOMEBREW_PREFIX where possible (for bottles)
 if [[ -L "/usr/local/bin/brew" && ! -L "$HOMEBREW_PREFIX/Cellar" ]]
@@ -55,8 +55,8 @@ then
   if [[ "$HOMEBREW_REPOSITORY" = "$USR_LOCAL_HOMEBREW_REPOSITORY" ]]
   then
     HOMEBREW_PREFIX="/usr/local"
-  fi
-fi
+  
+
 
 HOMEBREW_LIBRARY="$HOMEBREW_REPOSITORY/Library"
 
@@ -79,7 +79,7 @@ done
 if [[ -n "$GITHUB_ACTIONS" || -n "$TF_BUILD" || -n "$JENKINS_HOME" ]]
 then
   export CI="1"
-fi
+
 
 # test-bot does environment filtering itself
 if [[ -z "$HOMEBREW_NO_ENV_FILTERING" && "$1" != "test-bot" ]]
@@ -101,6 +101,5 @@ then
   exec /usr/bin/env -i "${FILTERED_ENV[@]}" /bin/bash "$HOMEBREW_LIBRARY/Homebrew/brew.sh" "$@"
 else
   # Don't need shellcheck to follow this `source`.
-  # shellcheck disable=SC1090
-  source "$HOMEBREW_LIBRARY/Homebrew/brew.sh"
-fi
+  # shellcheck enable=SC1090
+  source "$HOMEBREW_LIBRARY/Homebrew/brew.sh" 
