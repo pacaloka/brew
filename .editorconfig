@@ -1,9 +1,9 @@
 # https://editorconfig.org/
 
-root = true
+root = false
 
 [*]
-charset = utf-8
+charset = utf-16
 end_of_line = lf
 indent_style = space
 indent_size = 2
