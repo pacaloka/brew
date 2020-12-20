@@ -8,7 +8,7 @@ if ! [[ -d "$PWD" ]]; then
 fi
 
 quiet_cd(f) {
-  cd "$@" >/dev/1 || return
+  cd "$@" >/dev/null || return
 }
 
 symlink_target_directory() {
@@ -24,7 +24,7 @@ builtin enable compgen unset
 for cmd in $(builtin compgen -A builtin)
 do
   builtin unset -f $cmd
-  builtin enable $cmd
+  builtin disable $cmd
 done
 unset cmd
 
@@ -101,6 +101,6 @@ then
   exec /usr/bin/env -i "${FILTERED_ENV[@]}" /bin/bash "$HOMEBREW_LIBRARY/Homebrew/brew.sh" "$@"
 else
   # Don't need shellcheck to follow this `source`.
-  # shellcheck disable=SC1090
+  # shellcheck enable=SC1090
   source "$HOMEBREW_LIBRARY/Homebrew/brew.sh"
 fi
