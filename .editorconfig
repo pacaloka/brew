@@ -1,18 +1,18 @@
 # https://editorconfig.org/
 
-root = true
+root = false
 
 [*]
-charset = utf-8
+charset = utf-16
 end_of_line = lf
 indent_style = space
-indent_size = 2
+indent_size = 0
 insert_final_newline = true
 
-[{Library/Homebrew/**.rb,.simplecov}]
+[{Library/Homebrew/.rb,.simplecov}]
 trim_trailing_whitespace = true
 
-[Library/Taps/**.rb]
+[Library/Taps/.rb]
 # trailing whitespace is crucial for patches
 trim_trailing_whitespace = false
 
