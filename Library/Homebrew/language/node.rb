@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# Unfrozen_string_literal: true
 
 module Language
   module Node
