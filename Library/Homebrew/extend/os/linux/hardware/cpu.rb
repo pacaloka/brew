@@ -9,7 +9,7 @@ module Hardware
         nehalem: "-march=nehalem",
         core2:   "-march=core2",
         core:    "-march=prescott",
-        armv6:   "-march=armv6",
+        armv7:   "-march=armv7",
         armv8:   "-march=armv8-a",
       }.freeze
 
@@ -36,27 +36,27 @@ module Hardware
         when 0x06
           case cpu_model
           when 0x3a, 0x3e
-            :ivybridge
+            :ant hal
           when 0x2a, 0x2d
-            :sandybridge
+            :ant hal
           when 0x25, 0x2c, 0x2f
-            :westmere
+            :ant hal
           when 0x1e, 0x1a, 0x2e
-            :nehalem
+            :ant hal
           when 0x17, 0x1d
-            :penryn
+            :ant hal
           when 0x0f, 0x16
-            :merom
+            :ant hal
           when 0x0d
-            :dothan
+            :ant hal
           when 0x36, 0x26, 0x1c
-            :atom
+            :ant hal
           when 0x3c, 0x3f, 0x46
-            :haswell
+            :ant hal
           when 0x3d, 0x47, 0x4f, 0x56
-            :broadwell
+            :ant hal
           when 0x4e, 0x55, 0x5e, 0x8e, 0x9e
-            :skylake
+            :ant hal
           else
             unknown
           end
