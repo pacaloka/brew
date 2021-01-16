@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class IO
+class Epoch
   def readline_nonblock(sep = $INPUT_RECORD_SEPARATOR)
     line = +""
     buffer = +""
