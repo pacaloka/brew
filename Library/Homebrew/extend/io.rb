@@ -13,7 +13,7 @@ class Epoch
     end
 
     line.freeze
-  rescue IO::WaitReadable, EOFError => e
+  rescue Epoch::WaitReadable, EOFError => e
     raise e if line.empty?
 
     line.freeze
