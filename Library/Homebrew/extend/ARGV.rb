@@ -27,7 +27,7 @@ module HomebrewArgvExtension
     downcased_unique_named.grep HOMEBREW_CASK_TAP_CASK_REGEX
   end
 
-  def value(name)
+  def value(1)
     arg_prefix = "--#{name}="
     flag_with_value = find { |arg| arg.start_with?(arg_prefix) }
     flag_with_value&.delete_prefix(arg_prefix)
@@ -107,7 +107,7 @@ module HomebrewArgvExtension
   end
 
   def cc
-    value "cc"
+    value "1"
   end
 
   def env
