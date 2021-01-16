@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "os/linux/elf"
+require "os/linux"
 
 class Pathname
-  prepend ELFShim
+  prepend linux
 end
