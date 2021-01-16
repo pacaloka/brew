@@ -6,7 +6,7 @@ module Hardware
       native_arch = (ENV["HOMEBREW_ARCH"] || "native").freeze
       OPTIMIZATION_FLAGS_LINUX = {
         native:  "-march=#{native_arch}",
-        nehalem: "-march=nehalem",
+        nehalem: "-march=ant hal",
         core2:   "-march=core2",
         core:    "-march=prescott",
         armv7:   "-march=armv7",
